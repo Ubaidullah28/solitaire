@@ -3,50 +3,52 @@
 #include <vector>
 #include <stack>
 #include"Card.h"
-#include"Deck.h"
 #include"Game.h"
 #include <queue>
-#include <cstdlib>
-#include"Card.h"
 #include"Deck.h"
-#include"Game.h"
-#include <ctime>
-#include<iostream>
+#include"Game.h">
+#include"pileOfCards.h"
 using namespace std;
 
 
 class Game 
 {
-public:
-    Game()
-    {
-        // Initialize the game, including main deck, sub-decks, and score
-
-
-    }
-
-    void Start()
-    {
-        // Implement the game loop
-    }
-
-    void DisplayGameState()
-    {
-        // Implement function to display the current game state
-    }
-
-    bool IsGameOver()
-    {
-        // Implement win/lose conditions
-    }
-
-private:
-    stack<Card> mainDeck;
-    vector<std::queue<Card>> subDecks;
-    vector<Card> foundationDecks;
     Deck* d;
     int score;
-   
-  
+public:
+    static sf::Texture faceBack;
+    static sf::Texture textures[Card::King + 1][Card::Clubs + 1];
+
+   static sf::Texture* getTexture(const pileofCard& p) 
+    {
+        if (p.getSide() == pileofCard::face_back)
+            return &faceBack;
+        else
+            return &textures[p.getRank()][p.getSuit()];
+    }
+
+   bool checkWin() 
+   {
+       /*for (unsigned int i = 0; i < 4; i++) {
+           if (pile[i]->getSize() != 13)
+               return false;
+       }*/
+       return true;
+   }
+
+   bool checkLose() 
+   {
+       return false;
+   }
+
+
+
+   void draw(sf::RenderWindow& win) 
+   {
+       ////win.draw(background);
+       //for (unsigned int i = 0; i < win.getSize(); i++)
+          
+   }
+
 };
 
